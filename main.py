@@ -75,7 +75,7 @@ while True:
             opcao = int(input("Digite sua opção: "))
             
             if opcao == 1:
-                usuario.login()
+                usuario.login(listaObjetos)
     
             elif opcao == 2:
                 print("Encerrando o sistema...")
