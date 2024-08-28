@@ -19,10 +19,10 @@ class Usuario:
         global listaSenha 
         listaSenha = []
         print("Faça seu cadastro")
-        nome = input("Digite seu nome: ")
-        matricula = input("Digite sua matricula: ")
+        self.__nome= nome  = input("Digite seu nome: ")
+        self.__matricula = matricula = input("Digite sua matricula: ")
         listaMatricula.append(matricula)
-        senha = input("Digite sua senha: ")
+        self.__senha = senha = input("Digite sua senha: ")
         listaSenha.append(senha)
         print("Cadastro realizado com sucesso!!!")
 
@@ -36,7 +36,7 @@ class Usuario:
             print("deu M")
 
     def exibirUsuario(self):
-        print(f"Nome: {self.__nome}\nMatrícula: {self.__matricula}\nSenha: {self.senha}\n")
+        print(f"Nome: {self.__nome}\nMatrícula: {self.__matricula}\nSenha: {self.__senha}\n")
 
 class Professor(Usuario):
     def __init__(self):
