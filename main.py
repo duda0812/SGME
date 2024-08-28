@@ -29,13 +29,15 @@ while True:
             usuario = Professor()
             usuario.cadastro()
             listaObjetos.append(usuario)
+            print(listaObjetos)
             print("Menu:")
             print("1 - Login")
             print("2 - Sair")
             opcao = int(input("Digite sua opção: "))
 
             if opcao == 1:
-                usuario.login()
+                usuario.login(listaObjetos)
+
                 print("Menu:")
                 print("1 - Verificar usuários")
                 print("2 - Sair")
@@ -43,7 +45,7 @@ while True:
 
                 if opcao == 1:
                     for item in listaObjetos:
-                        usuario.exibirUsuario()
+                        item.exibirUsuario()
 
                 elif opcao == 2:
                     print("Encerrando o sistema...")
