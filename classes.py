@@ -40,6 +40,8 @@ class Usuario(ABC):
                         break
                     else:
                         print("Senha ou matrícula incorretas, tente novamente.")
+                
+                
     
         
 
@@ -94,11 +96,13 @@ class Material:
         self.__nomeMaterial = input("Insira o nome do material: ")
         self.__quantidadeTotal = int(input("Insira a quantidade total desse material: "))
 
-    
+    def getNomeMaterial(self):
+        return self.__nomeMaterial
         
 
     def registrarQtdTotal(self):
-        pass
+        novaQuantidade = input("Insira a nova quantidade total: ")
+        self.__quantidadeTotal = novaQuantidade
 
     def exibirMaterial(self):
         print(f"{self.__nomeMaterial} Total = {self.__quantidadeTotal}")

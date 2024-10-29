@@ -45,39 +45,54 @@ while True:
             #Login
             if opcao == 1:
                 usuario.login(listaProfessores)
-                print("\nMenu:")
-                print("1 - Mudar senha")
-                print("2 - Verificar usuários")
-                print("3 - Exibir minhas informações")
-                print("4 - Cadastrar Material")
-                print("5 - Sair")
-                opcao = int(input("Digite sua opção: "))
-                
-                #Mudar senha
-                if opcao == 1:
-                    usuario.setSenha()
-                
-                #Exibir usuários do sistema
-                elif opcao == 2:
-                    for item in listaObjetos:
-                        item.exibirUsuario()
+                while True:
+                    print("\nMenu:")
+                    print("1 - Mudar senha")
+                    print("2 - Verificar usuários")
+                    print("3 - Exibir minhas informações")
+                    print("4 - Cadastrar Material")
+                    print("5 - Exibir Materiais")
+                    print("6 - Editar quantidades")
+                    print("7 - Sair")
+                    opcao = int(input("Digite sua opção: "))
+                    
+                    #Mudar senha
+                    if opcao == 1:
+                        usuario.setSenha()
+                    
+                    #Exibir usuários do sistema
+                    elif opcao == 2:
+                        for item in listaObjetos:
+                            item.exibirUsuario()
 
-                #Exibir as próprias informações
-                elif opcao == 3:
-                    usuario.verificarInfos()
+                    #Exibir as próprias informações
+                    elif opcao == 3:
+                        usuario.verificarInfos()
+                    # cadastra novo material e adiciona na lista
+                    elif opcao == 4:
+                        item = Material()
+                        item.cadastrarNovoMaterial()
+                        listaMateriais.append(item)
+                        print(listaMateriais)   
 
-                elif opcao == 4:
-                    item = Material()
-                    item.cadastrarNovoMaterial()
-                    listaMateriais.append(item)
-                    print(listaMateriais)   
+                    elif opcao == 5:
+                        for item in listaMateriais:
+                            item.exibirMaterial()
+                    # altera total
+                    elif opcao == 6:
+                        for item in listaMateriais:
+                            item.exibirMaterial()
+                        itemEscolhido = input("Qual item deseja editar?")
+                        for item in listaMateriais:
+                            if item.getNomeMaterial() == itemEscolhido:
+                                item.registrarQtdTotal()
 
-                elif opcao == 5:
-                    print("\nEncerrando o sistema...")
-                    break
+                    elif opcao == 7:
+                        print("\nEncerrando o sistema...")
+                        break
 
-                else: 
-                    print("\nOpção inválida")
+                    else: 
+                        print("\nOpção inválida")
 
 
             elif opcao == 2:
