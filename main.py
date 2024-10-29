@@ -10,6 +10,7 @@ from classes import *
 listaProfessores = []
 listaAlunos = []
 listaObjetos= []
+listaMateriais = []
 
 while True:
     print("\n-----Sistema de Gerenciamento de Materiais Esportivos-----")
@@ -48,7 +49,8 @@ while True:
                 print("1 - Mudar senha")
                 print("2 - Verificar usuários")
                 print("3 - Exibir minhas informações")
-                print("4 - Sair")
+                print("4 - Cadastrar Material")
+                print("5 - Sair")
                 opcao = int(input("Digite sua opção: "))
                 
                 #Mudar senha
@@ -65,6 +67,12 @@ while True:
                     usuario.verificarInfos()
 
                 elif opcao == 4:
+                    item = Material()
+                    item.cadastrarNovoMaterial()
+                    listaMateriais.append(item)
+                    print(listaMateriais)   
+
+                elif opcao == 5:
                     print("\nEncerrando o sistema...")
                     break
 
