@@ -123,7 +123,9 @@ while True:
                 print("\nMenu:")
                 print("1 - Mudar senha")
                 print("2 - Exibir minhas informações")
-                print("3 - Sair")
+                print("3 - Exibir materiais")
+                print("4 - Solicitar materiais")
+                print("5 - Sair")
                 opcao = int(input("Digite sua opção: "))
                 
                 #Mudar senha
@@ -135,6 +137,15 @@ while True:
                     usuario.verificarInfos()
 
                 elif opcao == 3:
+                    for item in listaMateriais:
+                            item.exibirMaterial()
+
+                elif opcao == 4:
+                    m1 = MaterialEmprestado()
+                    print(m1)
+                    m1.Emprestar(listaMateriais)
+
+                elif opcao == 5:
                     print("\nEncerrando o sistema...")
                     break
 

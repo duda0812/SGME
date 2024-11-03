@@ -82,7 +82,7 @@ class Aluno(Usuario):
         super().verificarInfos()
         print(f"Turma: {self.__turma} ")
 
-
+   
 
 class Material:
     def __init__(self):
@@ -105,17 +105,27 @@ class Material:
         self.__quantidadeTotal = novaQuantidade
 
     def exibirMaterial(self):
-        print(f"{self.__nomeMaterial} Total = {self.__quantidadeTotal}")
+        print(f"{self.__nomeMaterial}\nTotal = {self.__quantidadeTotal}\n")
 
 
 class MaterialEmprestado:
     def __init__(self):
         self.__quantidadeItens = None
-        self.__relacao = None
+        self.__relacao = []
 
 
-    def Emprestar(self):
-        pass
+    def Emprestar(self,lista):
+        quant = int(input("Quantos itens deseja pegar emprestado?"))
+        self.__quantidadeItens = quant
+        for c in range(quant):
+            descricao = input("O que deseja?")
+            for item in lista:
+                if item.getNomeMaterial() == descricao:
+                    self.__relacao.append(item)
+
+
+            
+
 
 
 class Emprestimo:
