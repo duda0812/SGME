@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from datetime import datetime, timedelta
 
 class Usuario(ABC):
     def __init__(self):
@@ -25,7 +26,6 @@ class Usuario(ABC):
         self.__matricula = input("Digite sua matricula: ")
         self.__senha = input("Digite sua senha: ")
         
-
     def login(self,lista):
         status = True
         while status:
@@ -41,31 +41,24 @@ class Usuario(ABC):
                     else:
                         print("Senha ou matrícula incorretas, tente novamente.")
                 
-                
-    
-        
-
-
     def exibirUsuario(self):
         print(f"\nNome: {self.__nome}\nMatrícula: {self.__matricula}")
 
     def verificarInfos(self):
         print(f"\nMeu usuário: {self.__nome}\nMatrícula: {self.__matricula}\nSenha: {self.__senha}")
 
+    def consultarMateriais(self):
+        pass
+
 # As classes Professor e Aluno se relacionam com a classe Usuário por meio de herança.
 class Professor(Usuario):
     def __init__(self):
         super().__init__()
 
-    
-    
-
-
-
 class Aluno(Usuario):
     def __init__(self):
         super().__init__()
-        self.__turma= None
+        self.__turma = None
 
     def getTurma(self):
         return self.__turma
@@ -76,13 +69,14 @@ class Aluno(Usuario):
 
     def exibirUsuario(self):
         super().exibirUsuario()
-        print(f"Turma: {self.__turma} ")
+        print(f"Turma: {self.__turma}")
 
     def verificarInfos(self):
         super().verificarInfos()
-        print(f"Turma: {self.__turma} ")
+        print(f"Turma: {self.__turma}")
 
-   
+    def solicitarMaterial(self):
+        pass
 
 class Material:
     def __init__(self):
@@ -91,14 +85,12 @@ class Material:
         self.__quantidadeEmprestada = None
         self.__quantidadeDisponivel = None
 
+    def getNomeMaterial(self):
+        return self.__nomeMaterial
 
     def cadastrarNovoMaterial(self):
         self.__nomeMaterial = input("Insira o nome do material: ")
         self.__quantidadeTotal = int(input("Insira a quantidade total desse material: "))
-
-    def getNomeMaterial(self):
-        return self.__nomeMaterial
-        
 
     def registrarQtdTotal(self):
         novaQuantidade = input("Insira a nova quantidade total: ")
@@ -107,45 +99,56 @@ class Material:
     def exibirMaterial(self):
         print(f"{self.__nomeMaterial}\nTotal = {self.__quantidadeTotal}\n")
 
-
 class MaterialEmprestado:
     def __init__(self):
         self.__quantidadeItens = None
         self.__relacao = []
 
-
-    def Emprestar(self,lista):
-        quant = int(input("Quantos itens deseja pegar emprestado?"))
+    def getQuantidadeItens(self):
+        return self.__quantidadeItens
+    
+    def emprestar(self, lista):
+        quant = int(input("Quantos itens deseja pegar emprestado? "))
         self.__quantidadeItens = quant
         for c in range(quant):
-            descricao = input("O que deseja?")
+            descricao = input("O que deseja? ")
             for item in lista:
                 if item.getNomeMaterial() == descricao:
                     self.__relacao.append(item)
-
-
-            
-
-
 
 class Emprestimo:
     def __init__(self, aluno, professor, materialEmprestado):
         self.__aluno = aluno 
         self.__professor = professor
-        self.__dataEmprestimo = None
-        self.__dataLimiteDevolucao = None
+        self.__dataEmprestimo = datetime.now()
+        self.__dataLimiteDevolucao = self.__dataEmprestimo + timedelta(days = 7) 
         self.__dataDevolucao = None
         self.__material = materialEmprestado
 
-
     def registrarEmprestimo(self): 
-        pass
+        if self.validarEmprestimo():
+            print("Empréstimo autorizado.")
+            self.__material.emprestar()
+
+        else:
+            print("Empréstimo não autorizado")
 
     def validarEmprestimo(self):
-        pass
+        if self.__material.quantidadeDisponivel() > 0:
+            print("Material disponível para empréstimo.")
+            return True
+        else:
+            print("Material indisponível para empréstimo.")
+            return False
 
     def exibirResumo(self):
-        pass
+        print("Resumo do Empréstimo")
+        print(f"Aluno: {self.__aluno.getNome()}")
+        print(f"Professor: {self.__professor.getNome()}")
+        print(f"Data do empréstimo: {self.__dataEmprestimo}")
+        print(f"Data de devolução: {self.__dataDevolucao}")
+        print(f"Material: {self.__material.getNomeMaterial()}")
 
     def finalizarEmprestimo(self):
-        pass
+        self.__dataDevolucao = datetime.now()
+        print(f"Empréstimo finalizado.\nMaterial devolvido em {self.__dataDevolucao}")
