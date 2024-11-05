@@ -84,7 +84,7 @@ class Material:
         return self.__quantidadeTotal
     
     def cadastrarNovoMaterial(self):
-        self.__nomeMaterial = input("\nInsira o nome do material: ")
+        self.__nomeMaterial = input("\nInsira o nome do material: ").upper
         self.__quantidadeTotal = int(input("Insira a quantidade total desse material: "))
 
     def registrarQtdTotal(self):
@@ -114,7 +114,7 @@ class MaterialEmprestado:
         quant = int(input("\nQuantos itens deseja pegar emprestado? "))
         self.__quantidadeItens = quant
         for c in range(quant):
-            descricao = input("O que deseja? ")
+            descricao = input("O que deseja? ").upper
             for item in lista:
                 if item.getNomeMaterial() == descricao:
                     self.__relacao.append(item)
@@ -148,19 +148,26 @@ class Emprestimo:
             return False
 
     def exibirResumo(self, lista):
-        for i in lista:
-            print("Resumo do Empréstimo")
-            print(f"Aluno: {self.__aluno.getNome()}")
-            print(f"Data do empréstimo: {self.__dataEmprestimo}")
+        if lista != None:
+            for i in lista:
+                print("Resumo do Empréstimo")
+                print(f"Aluno: {self.__aluno.getNome()}")
+                print(f"Data do empréstimo: {self.__dataEmprestimo}")
 
-            """if self.__dataDevolucao == None:
-                self.__dataDevolucao = "Ainda não foi devolvido"
-            else:
-                self.__dataDevolucao"""
+                if self.__dataDevolucao == None:
+                    self.__dataDevolucao = "Ainda não foi devolvido"
+                else:
+                    self.__dataDevolucao
 
-            print(f"Data de devolução: {self.__dataDevolucao}")
-            print(f"Material: {self.__material.getRelacao()}, {self.__material.getQuantidadeItens()} itens emprestados.")
+                print(f"Data de devolução: {self.__dataDevolucao}")
+                print(f"Material: {self.__material.getRelacao()}, {self.__material.getQuantidadeItens()} itens emprestados.")
+        
+        else:
+            print("\nNenhum empréstimo realizado.")
 
-    def finalizarEmprestimo(self):
-        self.__dataDevolucao = datetime.now()
-        print(f"Empréstimo finalizado.\nMaterial devolvido em {self.__dataDevolucao}")
+    def finalizarEmprestimo(self, lista):
+        if lista != None:
+            self.__dataDevolucao = datetime.now()
+            print(f"Empréstimo finalizado.\nMaterial devolvido em {self.__dataDevolucao}")
+        else:
+            print("\nNenhum empréstimo realizado.")

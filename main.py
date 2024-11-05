@@ -1,9 +1,9 @@
-'''Disciplina: Programação Orientada a Objetos
-   Turma: 2B Informática Vespertino
-   Nomes: Geovana Evangelista Barros de Freitas
-          Gilvan Felipe Fagundes dos Santos
-          Larissa Nascimento Rodrigues
-          Maria Eduarda Araújo Frota Saraiva'''
+# Disciplina: Programação Orientada a Objetos
+#    Turma: 2B Informática Vespertino
+#    Nomes: Geovana Evangelista Barros de Freitas
+#           Gilvan Felipe Fagundes dos Santos
+#           Larissa Nascimento Rodrigues
+#           Maria Eduarda Araújo Frota Saraiva
 
 from classes import *
 
@@ -155,7 +155,7 @@ while True:
                         emprestimo01 = Emprestimo(usuario, m1)
                         m1.emprestar(listaMateriais)
                         emprestimo01.validarEmprestimo()
-                        emprestimo01.registrarEmprestimo()
+                        emprestimo01.registrarEmprestimo(listaEmprestimo)
                         listaEmprestimo.append(emprestimo01)
 
                     #Finalizar empréstimo
