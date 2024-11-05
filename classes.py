@@ -9,13 +9,13 @@ class Usuario(ABC):
 
     def getNome(self):
         return self.__nome
-    
+
     def getMatricula(self):
         return self.__matricula
-    
+
     def getSenha(self):
         return self.__senha
-    
+
     def setSenha(self):
         novasenha = input("\nInsira sua nova senha: ")
         self.__senha = novasenha 
@@ -25,7 +25,7 @@ class Usuario(ABC):
         self.__nome = input("Digite seu nome: ")
         self.__matricula = input("Digite sua matricula: ")
         self.__senha = input("Digite sua senha: ")
-        
+
     def login(self,lista):
         status = True
         while status:
@@ -40,7 +40,7 @@ class Usuario(ABC):
                         break
                     else:
                         print("Senha ou matrícula incorretas, tente novamente.")
-                
+
     def exibirUsuario(self):
         print(f"\nNome: {self.__nome}\nMatrícula: {self.__matricula}")
 
@@ -79,10 +79,10 @@ class Material:
 
     def getNomeMaterial(self):
         return self.__nomeMaterial
-    
+
     def getQuantidadeTotal(self):
         return self.__quantidadeTotal
-    
+
     def cadastrarNovoMaterial(self):
         self.__nomeMaterial = input("\nInsira o nome do material: ").upper
         self.__quantidadeTotal = int(input("Insira a quantidade total desse material: "))
@@ -103,13 +103,13 @@ class MaterialEmprestado:
 
     def getQuantidadeItens(self):
         return self.__quantidadeItens
-    
+
     def getQuantidadeDisponivel(self):
         return self.__quantidadeDisponivel
-    
+
     def getRelacao(self):
         return self.__relacao
-    
+
     def emprestar(self, lista):
         quant = int(input("\nQuantos itens deseja pegar emprestado? "))
         self.__quantidadeItens = quant
@@ -142,7 +142,7 @@ class Emprestimo:
         if self.__material.getQuantidadeItens() > 0:
             print("Material disponível para empréstimo.")
             return True
-        
+
         else:
             print("Material indisponível para empréstimo.")
             return False
@@ -161,7 +161,7 @@ class Emprestimo:
 
                 print(f"Data de devolução: {self.__dataDevolucao}")
                 print(f"Material: {self.__material.getRelacao()}, {self.__material.getQuantidadeItens()} itens emprestados.")
-        
+
         else:
             print("\nNenhum empréstimo realizado.")
 

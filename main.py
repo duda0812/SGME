@@ -1,10 +1,3 @@
-# Disciplina: Programação Orientada a Objetos
-#    Turma: 2B Informática Vespertino
-#    Nomes: Geovana Evangelista Barros de Freitas
-#           Gilvan Felipe Fagundes dos Santos
-#           Larissa Nascimento Rodrigues
-#           Maria Eduarda Araújo Frota Saraiva
-
 from classes import *
 
 listaProfessores = []
@@ -56,11 +49,11 @@ while True:
                     print("6 - Editar informações sobre o material(Quantidade total)")
                     print("7 - Sair")
                     opcao = int(input("Digite sua opção: "))
-                    
+
                     #Mudar senha
                     if opcao == 1:
                         usuario.setSenha()
-                    
+
                     #Exibir usuários do sistema
                     elif opcao == 2:
                         for item in listaObjetos:
@@ -121,7 +114,7 @@ while True:
             print("1 - Login")
             print("2 - Sair")
             opcao = int(input("Digite sua opção: "))
-            
+
             if opcao == 1:
                 usuario.login(listaAlunos)
                 while True:
@@ -134,7 +127,7 @@ while True:
                     print("6 - Exibir resumo do empréstimo")
                     print("7 - Sair")
                     opcao = int(input("Digite sua opção: "))
-                    
+
                     #Mudar senha
                     if opcao == 1:
                         usuario.setSenha()
@@ -155,15 +148,20 @@ while True:
                         emprestimo01 = Emprestimo(usuario, m1)
                         m1.emprestar(listaMateriais)
                         emprestimo01.validarEmprestimo()
-                        emprestimo01.registrarEmprestimo(listaEmprestimo)
+                        emprestimo01.registrarEmprestimo()
                         listaEmprestimo.append(emprestimo01)
 
                     #Finalizar empréstimo
                     elif opcao == 5:
-                        emprestimo01.finalizarEmprestimo()
+                        m1 = MaterialEmprestado()
+                        emprestimo01 = Emprestimo(usuario, m1)
+                        emprestimo01.finalizarEmprestimo(listaMateriais)
+                        break
 
                     #Exibir resumo do empréstimo
                     elif opcao == 6:
+                        m1 = MaterialEmprestado()
+                        emprestimo01 = Emprestimo(usuario, m1)
                         emprestimo01.exibirResumo(listaEmprestimo)
 
                     elif opcao == 7:
@@ -174,11 +172,11 @@ while True:
                         print("\nOpção inválida")
                         continue
 
-    
+
             elif opcao == 2:
                 print("\nEncerrando o sistema...")
                 break
-    
+
             else: 
                 print("\nOpção inválida")
                 continue
