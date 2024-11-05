@@ -3,7 +3,7 @@
    Nomes: Geovana Evangelista Barros de Freitas
           Gilvan Felipe Fagundes dos Santos
           Larissa Nascimento Rodrigues
-          Maria Eduarda Araújo Frota Saraiva s2'''
+          Maria Eduarda Araújo Frota Saraiva'''
 
 from classes import *
 
@@ -11,6 +11,7 @@ listaProfessores = []
 listaAlunos = []
 listaObjetos= []
 listaMateriais = []
+listaEmprestimo = []
 
 while True:
     print("\n-----Sistema de Gerenciamento de Materiais Esportivos-----")
@@ -50,9 +51,9 @@ while True:
                     print("1 - Mudar senha")
                     print("2 - Verificar usuários")
                     print("3 - Exibir minhas informações")
-                    print("4 - Cadastrar Material")
-                    print("5 - Exibir Materiais")
-                    print("6 - Editar quantidades")
+                    print("4 - Exibir materiais")
+                    print("5 - Cadastrar material")
+                    print("6 - Editar informações sobre o material(Quantidade total)")
                     print("7 - Sair")
                     opcao = int(input("Digite sua opção: "))
                     
@@ -68,17 +69,20 @@ while True:
                     #Exibir as próprias informações
                     elif opcao == 3:
                         usuario.verificarInfos()
-                    # cadastra novo material e adiciona na lista
+
+                    #Exibir a lista de materiais já cadastrados no sistema
                     elif opcao == 4:
+                        print("\nLista de materiais:")
+                        for item in listaMateriais:
+                            item.exibirMaterial()  
+
+                    #Cadastrar um novo material e adicioná-lo na lista
+                    elif opcao == 5:
                         item = Material()
                         item.cadastrarNovoMaterial()
-                        listaMateriais.append(item)
-                        print(listaMateriais)   
+                        listaMateriais.append(item)   
 
-                    elif opcao == 5:
-                        for item in listaMateriais:
-                            item.exibirMaterial()
-                    # altera total
+                    #Alterar quantidade total
                     elif opcao == 6:
                         for item in listaMateriais:
                             item.exibirMaterial()
@@ -120,38 +124,55 @@ while True:
             
             if opcao == 1:
                 usuario.login(listaAlunos)
-                print("\nMenu:")
-                print("1 - Mudar senha")
-                print("2 - Exibir minhas informações")
-                print("3 - Exibir materiais")
-                print("4 - Solicitar materiais")
-                print("5 - Sair")
-                opcao = int(input("Digite sua opção: "))
-                
-                #Mudar senha
-                if opcao == 1:
-                    usuario.setSenha()
+                while True:
+                    print("\nMenu:")
+                    print("1 - Mudar senha")
+                    print("2 - Exibir minhas informações")
+                    print("3 - Exibir materiais")
+                    print("4 - Solicitar materiais")
+                    print("5 - Finalizar empréstimo")
+                    print("6 - Exibir resumo do empréstimo")
+                    print("7 - Sair")
+                    opcao = int(input("Digite sua opção: "))
+                    
+                    #Mudar senha
+                    if opcao == 1:
+                        usuario.setSenha()
 
-                #Exibir as próprias informações
-                elif opcao == 2:
-                    usuario.verificarInfos()
+                    #Exibir as próprias informações
+                    elif opcao == 2:
+                        usuario.verificarInfos()
 
-                elif opcao == 3:
-                    for item in listaMateriais:
+                    #Exibir a lista de materiais já cadastrados no sistema
+                    elif opcao == 3:
+                        print("\nLista de materiais:")
+                        for item in listaMateriais:
                             item.exibirMaterial()
 
-                elif opcao == 4:
-                    m1 = MaterialEmprestado()
-                    print(m1)
-                    m1.Emprestar(listaMateriais)
+                    #Solicitar materiais
+                    elif opcao == 4:
+                        m1 = MaterialEmprestado()
+                        emprestimo01 = Emprestimo(usuario, m1)
+                        m1.emprestar(listaMateriais)
+                        emprestimo01.validarEmprestimo()
+                        emprestimo01.registrarEmprestimo()
+                        listaEmprestimo.append(emprestimo01)
 
-                elif opcao == 5:
-                    print("\nEncerrando o sistema...")
-                    break
+                    #Finalizar empréstimo
+                    elif opcao == 5:
+                        emprestimo01.finalizarEmprestimo()
 
-                else: 
-                    print("\nOpção inválida")
-                    continue
+                    #Exibir resumo do empréstimo
+                    elif opcao == 6:
+                        emprestimo01.exibirResumo(listaEmprestimo)
+
+                    elif opcao == 7:
+                        print("\nEncerrando o sistema...")
+                        break
+
+                    else: 
+                        print("\nOpção inválida")
+                        continue
 
     
             elif opcao == 2:
