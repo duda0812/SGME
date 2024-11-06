@@ -162,14 +162,14 @@ while True:
                     #Finalizar empréstimo
                     elif opcao == 5:
                         if listaEmprestimo == []:
-                           print("\nNenhum empréstimo realizado.")
+                            print("\nNenhum empréstimo realizado.")
                         else:
-                            for emprestimo in listaEmprestimo:
-                                if usuario == emprestimo01.getAluno():
-                                    emprestimo01.finalizarEmprestimo(listaEmprestimo)
+                        
+                             if usuario == emprestimo01.getAluno():
+                                emprestimo01.finalizarEmprestimo(listaEmprestimo, usuario)
 
-                                else:
-                                    print("\nNenhum empréstimo realizado.")
+                             else:
+                                print("\nNenhum empréstimo realizado.")
                             
 
                     #Exibir resumo do empréstimo
@@ -179,7 +179,7 @@ while True:
                         else:
                             for emprestimo in listaEmprestimo:
                                 if usuario == emprestimo01.getAluno():
-                                    emprestimo01.exibirResumo(listaEmprestimo)
+                                    emprestimo01.exibirResumo(listaEmprestimo,usuario)
                                     break
                                 
                                 else:
