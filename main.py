@@ -5,6 +5,8 @@
 #           Larissa Nascimento Rodrigues
 #           Maria Eduarda Araújo Frota Saraiva
 
+# trabalho madu
+
 from material import *
 from usuario import *
 from emprestimo import *
