@@ -23,15 +23,28 @@ while True:
     print("1 - Cadastrar")
     print("2 - Login")
     print("3 - Sair")
-    opcao = int(input("Digite a sua opção: "))
-
+    while True:
+        try:
+            opcao = int(input("Digite a sua opção: "))
+        except ValueError:
+            print("Opção não válida, digite um número que corresponde às opções.")
+            continue
+        break
+        
     #Cadastrar
     if opcao == 1:
         print("\nMenu:")
         print("1 - Professor")
         print("2 - Aluno")
         print("3 - Sair")
-        opcao = int(input("Digite a sua opção: "))
+        while True:
+            try:
+                opcao = int(input("Digite a sua opção: "))
+            except ValueError:
+                print("Opção não válida, digite um número que corresponde às opções.")
+                continue
+            break
+
 
         #Cadastrar Professor
         if opcao == 1:
@@ -45,7 +58,13 @@ while True:
             print("\nMenu:")
             print("1 - Login")
             print("2 - Sair")
-            opcao = int(input("Digite sua opção: "))
+            while True:
+                try:
+                    opcao = int(input("Digite a sua opção: "))
+                except ValueError:
+                    print("Opção não válida, digite um número que corresponde às opções.")
+                    continue
+                break
 
             #Login
             if opcao == 1:
@@ -59,7 +78,13 @@ while True:
                     print("5 - Cadastrar material")
                     print("6 - Editar informações sobre o material(Quantidade total)")
                     print("7 - Sair")
-                    opcao = int(input("Digite sua opção: "))
+                    while True:
+                        try:
+                            opcao = int(input("Digite a sua opção: "))
+                        except ValueError:
+                            print("Opção não válida, digite um número que corresponde às opções.")
+                            continue
+                        break
                     
                     #Mudar senha
                     if opcao == 1:
@@ -124,7 +149,13 @@ while True:
             print("\nMenu:")
             print("1 - Login")
             print("2 - Sair")
-            opcao = int(input("Digite sua opção: "))
+            while True:
+                try:
+                    opcao = int(input("Digite a sua opção: "))
+                except ValueError:
+                    print("Opção não válida, digite um número que corresponde às opções.")
+                    continue
+                break
             
             if opcao == 1:
                 usuario.login(listaAlunos)
@@ -137,7 +168,13 @@ while True:
                     print("5 - Finalizar empréstimo")
                     print("6 - Exibir resumo do empréstimo")
                     print("7 - Sair")
-                    opcao = int(input("Digite sua opção: "))
+                    while True:
+                        try:
+                            opcao = int(input("Digite a sua opção: "))
+                        except ValueError:
+                            print("Opção não válida, digite um número que corresponde às opções.")
+                            continue
+                        break
                     
                     #Mudar senha
                     if opcao == 1:
