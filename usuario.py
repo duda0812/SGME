@@ -1,5 +1,6 @@
 from abc import ABC
-
+from exceçoes import *
+from exceçoes import defNome
 class Usuario(ABC):
     def __init__(self):
         self.__nome = None
@@ -21,7 +22,19 @@ class Usuario(ABC):
         print("Senha alterada com sucesso!!!")
 
     def cadastro(self):
-        self.__nome = input("Digite seu nome: ")
+        # Raise lançando a exceção ValueError caso a pessoa digite algum caracter que não seja letra
+        while True:
+            try:
+                nome = str(input("Digite seu nome: "))
+                if all(n.isalpha() for n in nome.split(" ")):
+                    print("nome válido")
+                    self.__nome = nome
+                else:
+                    raise ValueError
+                break
+            except ValueError:
+                print('O nome inserido contém caracteres que não são letras, tente novamente.') 
+                           
         self.__matricula = input("Digite sua matricula: ")
         self.__senha = input("Digite sua senha: ")
         
