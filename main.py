@@ -8,6 +8,7 @@
 from material import *
 from usuario import *
 from emprestimo import *
+from excecao import ExcecaoContemNumero, ExcecaoContemLetras
 
 listaProfessores = []
 listaAlunos = []
@@ -28,6 +29,9 @@ while True:
     except ValueError:
         print("Opção inválida, digite uma das opções apresentadas.")
         continue
+    
+    finally:
+        print("A opção foi inserida")
 
     #Cadastrar
     if opcao == 1:
@@ -41,18 +45,21 @@ while True:
                 opcao = int(input("Digite a sua opção: "))
         
             except ValueError:
-                print("Opção inválida, digite uma das opções apresentadas.\n")
+                print("Opção inválida, digite uma das opções apresentadas.")
                 continue
+            
+            finally:
+                print("A opção foi inserida.\n")
+                
             break
 
         #Cadastrar Professor
         if opcao == 1:
-            print("\n-----Realize o seu cadastro como professor-----")
+            print("-----Realize o seu cadastro como professor-----")
             usuario = Professor()
             usuario.cadastro()
             listaProfessores.append(usuario)
             listaObjetos.append(usuario)
-            print("Cadastro realizado com sucesso!!!")
 
             print("\nMenu:")
             print("1 - Login")
@@ -63,8 +70,12 @@ while True:
                     opcao = int(input("Digite a sua opção: "))
             
                 except ValueError:
-                    print("Opção inválida, digite uma das opções apresentadas.\n")
+                    print("Opção inválida, digite uma das opções apresentadas.")
                     continue
+                
+                finally:
+                    print("A opção foi inserida.\n")
+                    
                 break
 
             #Login
@@ -85,8 +96,12 @@ while True:
                             opcao = int(input("Digite a sua opção: "))
                     
                         except ValueError:
-                            print("Opção inválida, digite uma das opções apresentadas.\n")
+                            print("Opção inválida, digite uma das opções apresentadas.")
                             continue
+                        
+                        finally:
+                            print("A opção foi inserida.\n")                       
+                        
                         break
                     
                     #Mudar senha
@@ -158,8 +173,12 @@ while True:
                     opcao = int(input("Digite a sua opção: "))
             
                 except ValueError:
-                    print("Opção inválida, digite uma das opções apresentadas.\n")
+                    print("Opção inválida, digite uma das opções apresentadas.")
                     continue
+                
+                finally:
+                    print("A opção foi inserida.\n")
+                
                 break
             
             if opcao == 1:
@@ -179,8 +198,12 @@ while True:
                             opcao = int(input("Digite a sua opção: "))
                     
                         except ValueError:
-                            print("Opção inválida, digite uma das opções apresentadas.\n")
+                            print("Opção inválida, digite uma das opções apresentadas.")
                             continue
+                        
+                        finally:
+                            print("A opção foi inserida.\n")
+                
                         break
                     
                     #Mudar senha

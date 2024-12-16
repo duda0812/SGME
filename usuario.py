@@ -1,4 +1,5 @@
 from abc import ABC
+from excecao import ExcecaoContemNumero, ExcecaoContemLetras
 
 class Usuario(ABC):
     def __init__(self):
@@ -21,9 +22,36 @@ class Usuario(ABC):
         print("Senha alterada com sucesso!!!")
 
     def cadastro(self):
-        self.__nome = input("Digite seu nome: ")
-        self.__matricula = input("Digite sua matricula: ")
-        self.__senha = input("Digite sua senha: ")
+        while True:
+            try:
+                self.__nome = input("Digite seu nome: ")
+                if not self.__nome.isalpha():
+                    raise ExcecaoContemNumero
+                
+                self.__matricula = input("Digite sua matricula: ")
+                if not self.__matricula.isdigit():
+                    raise ExcecaoContemLetras
+                
+                self.__senha = input("Digite sua senha (mínimo 6 caracteres): ")
+                if len(self.__senha) < 6:
+                    raise ValueError("A senha deve ter pelo menos 6 caracteres. Tente novamente.\n")
+                
+            except ExcecaoContemNumero:
+                print("Contém números, deve ser digitado somente letras no 'Nome'.\n")
+                continue
+                
+            except ExcecaoContemLetras:
+                print("Contém letras, deve ser digitado somente número na 'Matrícula'.\n")
+                continue
+                
+            except ValueError as ve:
+                print(f"Erro: {ve}")
+                continue
+            
+            else:
+                print("Cadastro realizado com sucesso!!!")
+                
+            break
         
     def login(self,lista):
         status = True
