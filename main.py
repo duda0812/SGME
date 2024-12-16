@@ -4,14 +4,13 @@
 #           Gilvan Felipe Fagundes dos Santos
 #           Larissa Nascimento Rodrigues
 #           Maria Eduarda Araújo Frota Saraiva
-'''colocar um dicionario na parte em que mostra a o nome dos itens
-e a quantidade deles '''
+
 
 
 from material import *
 from usuario import *
 from emprestimo import *
-
+from execoes import *
 listaProfessores = []
 listaAlunos = []
 listaObjetos= []
@@ -153,31 +152,35 @@ while True:
                         print("\nLista de materiais:")
                         for item in listaMateriais:
                             item.exibirMaterial()
-                            ###############################################################
 
                     #Solicitar materiais
+                                         # Solicitar materiais
                     elif opcao == 4:
                         try:
-                            material_solicitado=input("digite o nome do material que deseja solicitar:")
+                            material_solicitado = input("\nDigite o nome do material que deseja solicitar: ")
                             for material in listaMateriais:
-                                if material.getNomeMaterial()==material_solicitado:
-                                    if material.quantidade>0:
-                                        material.quantidade-=1
-                                        print("Empréstimo realizado.")
+                                if material.getNomeMaterial() == material_solicitado:
+                                    if material.getQuantidadeTotal() > 0:
+                                        # Reduz a quantidade disponível do material em 1
+                                        material.setQuantidadeTotal(material.getQuantidadeTotal() - 1)
+                                        
+                                        # Registrar o empréstimo
+                                        m1 = MaterialEmprestado()
+                                        emprestimo01 = Emprestimo(usuario, m1)
+                                        m1.emprestar([material])  # Registrar o material emprestado
+                                        emprestimo01.registrarEmprestimo()
+                                        listaEmprestimo.append(emprestimo01)
+
+                                        print(f"\nMaterial '{material_solicitado}' foi emprestado com sucesso!")
                                         break
                                     else:
-                                        raise MaterialIndisponivel(f"o material{material_solicitado} está indisponível")
+                                        raise MaterialIndisponivel(f"\nO material '{material_solicitado}' está indisponível no momento.")
                             else:
-                                raise MaterialIndisponivel(f"o material{material_solicitado} não foi encontrado.")
-                        except MaterialIndisponivel as x:
-                            print(x)
+                                raise MaterialIndisponivel(f"\nO material '{material_solicitado}' não foi encontrado no sistema.")
+                        except MaterialIndisponivel as erro:
+                            print(erro)
 
 
-                        m1 = MaterialEmprestado()
-                        emprestimo01 = Emprestimo(usuario, m1)
-                        m1.emprestar(listaMateriais)
-                        emprestimo01.registrarEmprestimo()
-                        listaEmprestimo.append(emprestimo01)
  
                     #Finalizar empréstimo
                     elif opcao == 5:

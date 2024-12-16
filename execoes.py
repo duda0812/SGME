@@ -1,4 +1,2 @@
-from main import *
-class MaterialIndisponivel():
+class MaterialIndisponivel(Exception):
     pass
-
