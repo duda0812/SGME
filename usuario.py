@@ -1,6 +1,7 @@
 from abc import ABC
 from exceçoes import *
-from exceçoes import defNome
+from exceçoes import defMatricula
+from exceçoes import ExcecaoMatriculaInvalida
 class Usuario(ABC):
     def __init__(self):
         self.__nome = None
@@ -22,7 +23,7 @@ class Usuario(ABC):
         print("Senha alterada com sucesso!!!")
 
     def cadastro(self):
-        # Raise lançando a exceção ValueError caso a pessoa digite algum caracter que não seja letra
+        # Raise lançando a exceção ValueError caso a pessoa digite algum caracter que não seja letra ao inserir o nome.
         while True:
             try:
                 nome = str(input("Digite seu nome: "))
@@ -34,8 +35,21 @@ class Usuario(ABC):
                 break
             except ValueError:
                 print('O nome inserido contém caracteres que não são letras, tente novamente.') 
-                           
-        self.__matricula = input("Digite sua matricula: ")
+
+        while True:    
+            try:
+                m = input("digite sua matrícula: ")
+                if defMatricula(m) == True: 
+                    self.__matricula = m
+                break
+
+# exceção criada sendo tratada
+            except ExcecaoMatriculaInvalida:
+                print("Valor inválido, sua matrícula deve conter 13 caracteres.")
+                continue
+
+        
+            
         self.__senha = input("Digite sua senha: ")
         
     def login(self,lista):

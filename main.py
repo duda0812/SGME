@@ -23,6 +23,8 @@ while True:
     print("1 - Cadastrar")
     print("2 - Login")
     print("3 - Sair")
+
+    # tratando a exceção de ValueError que apareceria se digitassem um valor inválido, diferente das opções.
     while True:
         try:
             opcao = int(input("Digite a sua opção: "))
