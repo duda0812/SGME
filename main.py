@@ -1,11 +1,9 @@
 # Disciplina: Programação Orientada a Objetos
-#    Turma: 2B Informática Vespertino
-#    Nomes: Geovana Evangelista Barros de Freitas
-#           Gilvan Felipe Fagundes dos Santos
-#           Larissa Nascimento Rodrigues
-#           Maria Eduarda Araújo Frota Saraiva
-
-
+# Turma: 2B Informática Vespertino
+# Nomes: Geovana Evangelista Barros de Freitas
+#        Gilvan Felipe Fagundes dos Santos
+#        Larissa Nascimento Rodrigues
+#        Maria Eduarda Araújo Frota Saraiva
 
 from material import *
 from usuario import *
@@ -23,7 +21,13 @@ while True:
     print("1 - Cadastrar")
     print("2 - Login")
     print("3 - Sair")
-    opcao = int(input("Digite a sua opção: "))
+    
+    try:
+        opcao = int(input("Digite a sua opção: "))
+        
+    except ValueError:
+        print("Opção inválida, digite uma das opções apresentadas.")
+        continue
 
     #Cadastrar
     if opcao == 1:
@@ -31,7 +35,15 @@ while True:
         print("1 - Professor")
         print("2 - Aluno")
         print("3 - Sair")
-        opcao = int(input("Digite a sua opção: "))
+        
+        while True:
+            try:
+                opcao = int(input("Digite a sua opção: "))
+        
+            except ValueError:
+                print("Opção inválida, digite uma das opções apresentadas.\n")
+                continue
+            break
 
         #Cadastrar Professor
         if opcao == 1:
@@ -45,7 +57,15 @@ while True:
             print("\nMenu:")
             print("1 - Login")
             print("2 - Sair")
-            opcao = int(input("Digite sua opção: "))
+            
+            while True:
+                try:
+                    opcao = int(input("Digite a sua opção: "))
+            
+                except ValueError:
+                    print("Opção inválida, digite uma das opções apresentadas.\n")
+                    continue
+                break
 
             #Login
             if opcao == 1:
@@ -59,7 +79,15 @@ while True:
                     print("5 - Cadastrar material")
                     print("6 - Editar informações sobre o material(Quantidade total)")
                     print("7 - Sair")
-                    opcao = int(input("Digite sua opção: "))
+                    
+                    while True:
+                        try:
+                            opcao = int(input("Digite a sua opção: "))
+                    
+                        except ValueError:
+                            print("Opção inválida, digite uma das opções apresentadas.\n")
+                            continue
+                        break
                     
                     #Mudar senha
                     if opcao == 1:
@@ -124,7 +152,15 @@ while True:
             print("\nMenu:")
             print("1 - Login")
             print("2 - Sair")
-            opcao = int(input("Digite sua opção: "))
+            
+            while True:
+                try:
+                    opcao = int(input("Digite a sua opção: "))
+            
+                except ValueError:
+                    print("Opção inválida, digite uma das opções apresentadas.\n")
+                    continue
+                break
             
             if opcao == 1:
                 usuario.login(listaAlunos)
@@ -137,7 +173,15 @@ while True:
                     print("5 - Finalizar empréstimo")
                     print("6 - Exibir resumo do empréstimo")
                     print("7 - Sair")
-                    opcao = int(input("Digite sua opção: "))
+                    
+                    while True:
+                        try:
+                            opcao = int(input("Digite a sua opção: "))
+                    
+                        except ValueError:
+                            print("Opção inválida, digite uma das opções apresentadas.\n")
+                            continue
+                        break
                     
                     #Mudar senha
                     if opcao == 1:
