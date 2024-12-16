@@ -4,7 +4,8 @@
 #           Gilvan Felipe Fagundes dos Santos
 #           Larissa Nascimento Rodrigues
 #           Maria Eduarda Araújo Frota Saraiva
-
+'''colocar um dicionario na parte em que mostra a o nome dos itens
+e a quantidade deles '''
 
 
 from material import *
@@ -152,9 +153,26 @@ while True:
                         print("\nLista de materiais:")
                         for item in listaMateriais:
                             item.exibirMaterial()
+                            ###############################################################
 
                     #Solicitar materiais
                     elif opcao == 4:
+                        try:
+                            material_solicitado=input("digite o nome do material que deseja solicitar:")
+                            for material in listaMateriais:
+                                if material.getNomeMaterial()==material_solicitado:
+                                    if material.quantidade>0:
+                                        material.quantidade-=1
+                                        print("Empréstimo realizado.")
+                                        break
+                                    else:
+                                        raise MaterialIndisponivel(f"o material{material_solicitado} está indisponível")
+                            else:
+                                raise MaterialIndisponivel(f"o material{material_solicitado} não foi encontrado.")
+                        except MaterialIndisponivel as x:
+                            print(x)
+
+
                         m1 = MaterialEmprestado()
                         emprestimo01 = Emprestimo(usuario, m1)
                         m1.emprestar(listaMateriais)
