@@ -1,0 +1,8 @@
+class OpcaoInvalida(Exception):
+    pass
+
+
+
+
+
+

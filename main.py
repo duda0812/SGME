@@ -6,11 +6,11 @@
 #           Maria Eduarda Araújo Frota Saraiva
 
 
-
+from excecoes import *
 from material import *
 from usuario import *
 from emprestimo import *
-
+# coleções
 listaProfessores = []
 listaAlunos = []
 listaObjetos= []
@@ -59,11 +59,19 @@ while True:
                     print("5 - Cadastrar material")
                     print("6 - Editar informações sobre o material(Quantidade total)")
                     print("7 - Sair")
-                    opcao = int(input("Digite sua opção: "))
+                    opcao = int(input("Digite sua opção: ")) 
+                    #aqui coloquei o try, o except e o finnaly para caso de erro (usuário selecionar alguma opção inválida)
+                    try:
+                        if opcao <1 or opcao> 7:
+                            print("opção inválida, tente novamente")
+                            raise OpcaoInvalida ("opção inválida, tente novamente")
+                   
+
                     
                     #Mudar senha
                     if opcao == 1:
                         usuario.setSenha()
+                        
                     
                     #Exibir usuários do sistema
                     elif opcao == 2:
