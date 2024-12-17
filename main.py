@@ -69,6 +69,7 @@ while True:
                             print (erro)
                     finally:
                         print ("prosseguindo")
+                        
                    
 
 
