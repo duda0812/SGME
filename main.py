@@ -10,7 +10,9 @@
 from material import *
 from usuario import *
 from emprestimo import *
-from execoes import *
+from excecoes import *
+
+#coleções 
 listaProfessores = []
 listaAlunos = []
 listaObjetos= []
@@ -154,31 +156,35 @@ while True:
                             item.exibirMaterial()
 
                     #Solicitar materiais
-                                         # Solicitar materiais
+
+                    #Aqui está o try, except e o finally
+                    
                     elif opcao == 4:
                         try:
                             material_solicitado = input("\nDigite o nome do material que deseja solicitar: ")
                             for material in listaMateriais:
                                 if material.getNomeMaterial() == material_solicitado:
                                     if material.getQuantidadeTotal() > 0:
-                                        # Reduz a quantidade disponível do material em 1
+                                        # Aqui reduz a quantidade disponível do material em 1
                                         material.setQuantidadeTotal(material.getQuantidadeTotal() - 1)
                                         
-                                        # Registrar o empréstimo
+                                        # Aqui registra o empréstimo
                                         m1 = MaterialEmprestado()
                                         emprestimo01 = Emprestimo(usuario, m1)
-                                        m1.emprestar([material])  # Registrar o material emprestado
+                                        m1.emprestar([material])  # Aqui registra o material emprestado
                                         emprestimo01.registrarEmprestimo()
                                         listaEmprestimo.append(emprestimo01)
 
                                         print(f"\nMaterial '{material_solicitado}' foi emprestado com sucesso!")
                                         break
-                                    else:
-                                        raise MaterialIndisponivel(f"\nO material '{material_solicitado}' está indisponível no momento.")
                             else:
-                                raise MaterialIndisponivel(f"\nO material '{material_solicitado}' não foi encontrado no sistema.")
+                                raise MaterialIndisponivel(f"\nO material '{material_solicitado}' não foi encontrado ou não está disponível no sistema.")
+                            
                         except MaterialIndisponivel as erro:
                             print(erro)
+
+                        finally:
+                            print("Verificação realizada com sucesso!")
 
 
  
