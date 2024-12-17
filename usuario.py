@@ -34,6 +34,7 @@ class Usuario(ABC):
             break
 
     def cadastro(self):
+        #Tratamento de erro para nome, matrícula e senha no cadastro
         while True:
             try:
                 self.__nome = input("Digite seu nome: ")
@@ -49,11 +50,11 @@ class Usuario(ABC):
                     raise ValueError("A senha deve ter pelo menos 6 caracteres. Tente novamente.\n")
                 
             except ExcecaoContemNumero:
-                print("Contém números, deve ser digitado somente letras no 'Nome'.\n")
+                print("Deve ser digitado somente letras no 'Nome'.\n")
                 continue
                 
             except ExcecaoContemLetras:
-                print("Contém letras, deve ser digitado somente número na 'Matrícula'.\n")
+                print("Deve ser digitado somente número na 'Matrícula'.\n")
                 continue
                 
             except ValueError as ve:
