@@ -66,6 +66,10 @@ while True:
                             print("opção inválida, tente novamente")
                             raise OpcaoInvalida ("opção inválida, tente novamente")
                     except OpcaoInvalida as erro: #continuação
+                            print (erro)
+                    finally:
+                        print ("prosseguindo")
+                   
 
 
                     
