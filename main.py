@@ -5,7 +5,14 @@
 #           Larissa Nascimento Rodrigues
 #           Maria Eduarda Araújo Frota Saraiva
 
-# trabalho madu
+# Branch da madu
+# Tratamentos de exceção no arquivo main: tratando se o usuário digitar um número que não corresponde às opções 
+
+# Arquivo usuario: linhas (27-37) tratando se o usuário digitar algo diferente de letras no campo nome;
+# linhas (39-49) validando matrícula utilizando minha exceção
+
+#Arquivo exceçoes: criei minha exceção 
+
 
 from material import *
 from usuario import *
@@ -24,13 +31,18 @@ while True:
     print("2 - Login")
     print("3 - Sair")
 
-    # tratando a exceção de ValueError que apareceria se digitassem um valor inválido, diferente das opções.
+    # tratando a exceção de ValueError que apareceria se digitassem um valor inválido diferente das opções.
     while True:
         try:
             opcao = int(input("Digite a sua opção: "))
         except ValueError:
             print("Opção não válida, digite um número que corresponde às opções.")
             continue
+        except:
+            print("Erro desconhecido.")
+            continue
+        finally:
+            print("Opção inserida")
         break
         
     #Cadastrar
@@ -45,6 +57,11 @@ while True:
             except ValueError:
                 print("Opção não válida, digite um número que corresponde às opções.")
                 continue
+            except:
+                print("Erro desconhecido.")
+                continue
+            finally:
+                print("Opção inserida")
             break
 
 
@@ -66,6 +83,11 @@ while True:
                 except ValueError:
                     print("Opção não válida, digite um número que corresponde às opções.")
                     continue
+                except:
+                    print("Erro desconhecido.")
+                    continue
+                finally:
+                    print("Opção inserida")
                 break
 
             #Login
@@ -86,6 +108,11 @@ while True:
                         except ValueError:
                             print("Opção não válida, digite um número que corresponde às opções.")
                             continue
+                        except:
+                            print("Erro desconhecido.")
+                            continue
+                        finally:
+                            print("Opção inserida")
                         break
                     
                     #Mudar senha
@@ -157,6 +184,11 @@ while True:
                 except ValueError:
                     print("Opção não válida, digite um número que corresponde às opções.")
                     continue
+                except:
+                    print("Erro desconhecido.")
+                    continue
+                finally:
+                    print("Opção inserida")
                 break
             
             if opcao == 1:
@@ -176,6 +208,11 @@ while True:
                         except ValueError:
                             print("Opção não válida, digite um número que corresponde às opções.")
                             continue
+                        except:
+                            print("Erro desconhecido.")
+                            continue
+                        finally:
+                            print("Opção inserida")
                         break
                     
                     #Mudar senha
