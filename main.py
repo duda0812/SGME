@@ -5,6 +5,13 @@
 #           Larissa Nascimento Rodrigues
 #           Maria Eduarda Araújo Frota Saraiva
 
+# Branch da madu
+# Tratamentos de exceção no arquivo main: tratando se o usuário digitar um número que não corresponde às opções 
+
+# Arquivo usuario: linhas (27-37) tratando se o usuário digitar algo diferente de letras no campo nome;
+# linhas (39-49) validando matrícula utilizando minha exceção
+
+#Arquivo exceçoes: criei minha exceção 
 
 
 from material import *
@@ -23,15 +30,40 @@ while True:
     print("1 - Cadastrar")
     print("2 - Login")
     print("3 - Sair")
-    opcao = int(input("Digite a sua opção: "))
 
+    # tratando a exceção de ValueError que apareceria se digitassem um valor inválido diferente das opções.
+    while True:
+        try:
+            opcao = int(input("Digite a sua opção: "))
+        except ValueError:
+            print("Opção não válida, digite um número que corresponde às opções.")
+            continue
+        except:
+            print("Erro desconhecido.")
+            continue
+        finally:
+            print("Opção inserida")
+        break
+        
     #Cadastrar
     if opcao == 1:
         print("\nMenu:")
         print("1 - Professor")
         print("2 - Aluno")
         print("3 - Sair")
-        opcao = int(input("Digite a sua opção: "))
+        while True:
+            try:
+                opcao = int(input("Digite a sua opção: "))
+            except ValueError:
+                print("Opção não válida, digite um número que corresponde às opções.")
+                continue
+            except:
+                print("Erro desconhecido.")
+                continue
+            finally:
+                print("Opção inserida")
+            break
+
 
         #Cadastrar Professor
         if opcao == 1:
@@ -45,7 +77,18 @@ while True:
             print("\nMenu:")
             print("1 - Login")
             print("2 - Sair")
-            opcao = int(input("Digite sua opção: "))
+            while True:
+                try:
+                    opcao = int(input("Digite a sua opção: "))
+                except ValueError:
+                    print("Opção não válida, digite um número que corresponde às opções.")
+                    continue
+                except:
+                    print("Erro desconhecido.")
+                    continue
+                finally:
+                    print("Opção inserida")
+                break
 
             #Login
             if opcao == 1:
@@ -59,7 +102,18 @@ while True:
                     print("5 - Cadastrar material")
                     print("6 - Editar informações sobre o material(Quantidade total)")
                     print("7 - Sair")
-                    opcao = int(input("Digite sua opção: "))
+                    while True:
+                        try:
+                            opcao = int(input("Digite a sua opção: "))
+                        except ValueError:
+                            print("Opção não válida, digite um número que corresponde às opções.")
+                            continue
+                        except:
+                            print("Erro desconhecido.")
+                            continue
+                        finally:
+                            print("Opção inserida")
+                        break
                     
                     #Mudar senha
                     if opcao == 1:
@@ -124,7 +178,18 @@ while True:
             print("\nMenu:")
             print("1 - Login")
             print("2 - Sair")
-            opcao = int(input("Digite sua opção: "))
+            while True:
+                try:
+                    opcao = int(input("Digite a sua opção: "))
+                except ValueError:
+                    print("Opção não válida, digite um número que corresponde às opções.")
+                    continue
+                except:
+                    print("Erro desconhecido.")
+                    continue
+                finally:
+                    print("Opção inserida")
+                break
             
             if opcao == 1:
                 usuario.login(listaAlunos)
@@ -137,7 +202,18 @@ while True:
                     print("5 - Finalizar empréstimo")
                     print("6 - Exibir resumo do empréstimo")
                     print("7 - Sair")
-                    opcao = int(input("Digite sua opção: "))
+                    while True:
+                        try:
+                            opcao = int(input("Digite a sua opção: "))
+                        except ValueError:
+                            print("Opção não válida, digite um número que corresponde às opções.")
+                            continue
+                        except:
+                            print("Erro desconhecido.")
+                            continue
+                        finally:
+                            print("Opção inserida")
+                        break
                     
                     #Mudar senha
                     if opcao == 1:
