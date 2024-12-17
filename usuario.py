@@ -17,9 +17,21 @@ class Usuario(ABC):
         return self.__senha
     
     def setSenha(self):
-        novasenha = input("\nInsira sua nova senha: ")
-        self.__senha = novasenha 
-        print("Senha alterada com sucesso!!!")
+        while True: 
+            try:
+                novasenha = input("Insira sua nova senha: ")
+                if len(novasenha) < 6:
+                    raise ValueError("A senha deve ter pelo menos 6 caracteres. Tente novamente.\n")
+                
+            except ValueError as ve:
+                print(f"Erro: {ve}")
+                continue
+            
+            else:
+                self.__senha = novasenha 
+                print("Senha alterada com sucesso!!!")
+                
+            break
 
     def cadastro(self):
         while True:
@@ -47,16 +59,13 @@ class Usuario(ABC):
             except ValueError as ve:
                 print(f"Erro: {ve}")
                 continue
-            
-            else:
-                print("Cadastro realizado com sucesso!!!")
                 
             break
         
     def login(self,lista):
         status = True
         while status:
-            print("\nFaça seu login")
+            print("Faça seu login")
             matricula = input("Insira sua matrícula: ")
             senha = input("Insira sua senha: ")
             if len(lista) > 0:
@@ -66,7 +75,7 @@ class Usuario(ABC):
                         status = False
                         break
                     else:
-                        print("Senha ou matrícula incorretas, tente novamente.")
+                        print("Senha ou matrícula incorretas, tente novamente.\n")
                 
     def exibirUsuario(self):
         print(f"\nNome: {self.__nome}\nMatrícula: {self.__matricula}")

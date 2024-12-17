@@ -3,3 +3,6 @@ class ExcecaoContemNumero(Exception):
 
 class ExcecaoContemLetras(Exception):
     pass
+
+class ExcecaoOpcaoInvalida(Exception):
+    pass

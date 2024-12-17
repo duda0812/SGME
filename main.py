@@ -8,7 +8,7 @@
 from material import *
 from usuario import *
 from emprestimo import *
-from excecao import ExcecaoContemNumero, ExcecaoContemLetras
+from excecao import ExcecaoContemNumero, ExcecaoContemLetras, ExcecaoOpcaoInvalida
 
 listaProfessores = []
 listaAlunos = []
@@ -31,7 +31,7 @@ while True:
         continue
     
     finally:
-        print("A opção foi inserida")
+        print("A opção foi digitada")
 
     #Cadastrar
     if opcao == 1:
@@ -43,13 +43,19 @@ while True:
         while True:
             try:
                 opcao = int(input("Digite a sua opção: "))
+                if opcao !=1 and opcao !=2 and opcao !=3:
+                    raise ExcecaoOpcaoInvalida
         
             except ValueError:
                 print("Opção inválida, digite uma das opções apresentadas.")
                 continue
             
+            except ExcecaoOpcaoInvalida:
+                print("Opção inválida, digite uma das opções apresentadas.")
+                continue
+            
             finally:
-                print("A opção foi inserida.\n")
+                print("A opção foi digitada\n")
                 
             break
 
@@ -60,6 +66,7 @@ while True:
             usuario.cadastro()
             listaProfessores.append(usuario)
             listaObjetos.append(usuario)
+            print("Cadastro realizado com sucesso!!!")
 
             print("\nMenu:")
             print("1 - Login")
@@ -68,13 +75,19 @@ while True:
             while True:
                 try:
                     opcao = int(input("Digite a sua opção: "))
+                    if opcao !=1 and opcao !=2:
+                        raise ExcecaoOpcaoInvalida
             
                 except ValueError:
                     print("Opção inválida, digite uma das opções apresentadas.")
                     continue
                 
+                except ExcecaoOpcaoInvalida:
+                    print("Opção inválida, digite uma das opções apresentadas.")
+                    continue
+                
                 finally:
-                    print("A opção foi inserida.\n")
+                    print("A opção foi digitada\n")
                     
                 break
 
@@ -94,14 +107,20 @@ while True:
                     while True:
                         try:
                             opcao = int(input("Digite a sua opção: "))
+                            if opcao!=1 and opcao!=2 and opcao!=3 and opcao!=4 and opcao!=5 and opcao!=6 and opcao!=7:
+                                raise ExcecaoOpcaoInvalida
                     
                         except ValueError:
                             print("Opção inválida, digite uma das opções apresentadas.")
                             continue
                         
-                        finally:
-                            print("A opção foi inserida.\n")                       
+                        except ExcecaoOpcaoInvalida:
+                            print("Opção inválida, digite uma das opções apresentadas.")
+                            continue
                         
+                        finally:
+                            print("A opção foi digitada\n")
+                            
                         break
                     
                     #Mudar senha
@@ -133,27 +152,33 @@ while True:
                     elif opcao == 6:
                         for item in listaMateriais:
                             item.exibirMaterial()
-                        itemEscolhido = input("Qual item deseja editar?")
+                        
+                        while True:
+                            try:
+                                itemEscolhido = input("Qual item deseja editar? ")
+                                if not itemEscolhido.isalpha():
+                                    raise ExcecaoContemNumero
+                                
+                            except ExcecaoContemNumero:
+                                print("Contém números, deve ser digitado somente letras.\n")
+                                continue
+                            
+                            break
+                    
                         for item in listaMateriais:
                             if item.getNomeMaterial() == itemEscolhido:
                                 item.registrarQtdTotal()
+                                
+                            else:
+                                print("Item não encontrado.")
 
                     elif opcao == 7:
                         print("\nEncerrando o sistema...")
                         break
 
-                    else: 
-                        print("\nOpção inválida")
-
-
             elif opcao == 2:
                 print("\nEncerrando o sistema...")
                 break
-
-            else: 
-                print("\nOpção inválida")
-                continue
-
 
         #Cadastrar aluno
         elif opcao == 2:
@@ -171,14 +196,20 @@ while True:
             while True:
                 try:
                     opcao = int(input("Digite a sua opção: "))
+                    if opcao !=1 and opcao !=2:
+                        raise ExcecaoOpcaoInvalida
             
                 except ValueError:
                     print("Opção inválida, digite uma das opções apresentadas.")
                     continue
                 
-                finally:
-                    print("A opção foi inserida.\n")
+                except ExcecaoOpcaoInvalida:
+                    print("Opção inválida, digite uma das opções apresentadas.")
+                    continue
                 
+                finally:
+                    print("A opção foi digitada\n")
+                    
                 break
             
             if opcao == 1:
@@ -196,14 +227,20 @@ while True:
                     while True:
                         try:
                             opcao = int(input("Digite a sua opção: "))
+                            if opcao !=1 and opcao !=2 and opcao !=3 and opcao !=4 and opcao !=5 and opcao !=6 and opcao !=7:
+                                raise ExcecaoOpcaoInvalida
                     
                         except ValueError:
                             print("Opção inválida, digite uma das opções apresentadas.")
                             continue
                         
+                        except ExcecaoOpcaoInvalida:
+                            print("Opção inválida, digite uma das opções apresentadas.")
+                            continue
+                        
                         finally:
-                            print("A opção foi inserida.\n")
-                
+                            print("A opção foi digitada\n")
+                            
                         break
                     
                     #Mudar senha
@@ -255,30 +292,16 @@ while True:
                                     print("\nNenhum empréstimo realizado.")
 
                     elif opcao == 7:
-                        print("\nEncerrando o sistema...")
+                        print("Encerrando o sistema...")
                         break
 
-                    else: 
-                        print("\nOpção inválida")
-                        continue
-
-    
             elif opcao == 2:
-                print("\nEncerrando o sistema...")
+                print("Encerrando o sistema...")
                 break
-    
-            else: 
-                print("\nOpção inválida")
-                continue
-
 
         elif opcao == 3:
-            print("\nEncerrando o sistema...")
+            print("Encerrando o sistema...")
             break
-
-        else:
-            print("\nOpção inválida")
-            continue
 
     #Login
     elif opcao == 2:

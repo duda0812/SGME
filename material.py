@@ -13,15 +13,44 @@ class Material:
         return self.__quantidadeTotal
     
     def cadastrarNovoMaterial(self):
-        self.__nomeMaterial = input("\nInsira o nome do material: ")
-        self.__quantidadeTotal = int(input("Insira a quantidade total desse material: "))
+        while True:
+            try:
+                self.__nomeMaterial = input("Insira o nome do material: ")
+                if not self.__nomeMaterial.isalpha():
+                    raise ExcecaoContemNumero
+                
+                self.__quantidadeTotal = int(input("Insira a quantidade total desse material: "))
+                
+            except ExcecaoContemNumero:
+                print("Contém números, deve ser digitado somente letras no 'Nome do Material'.\n")
+                continue
+            
+            except ValueError:
+                print("Insira um valor correspondente ao que está sendo pedido. Tente novamente.\n")
+                continue
+                
+            else:
+                print("Cadastro de novo material realizado com sucesso!!!")
+            
+            break
 
     def registrarQtdTotal(self):
-        novaQuantidade = input("Insira a nova quantidade total: ")
-        self.__quantidadeTotal = novaQuantidade
+        while True:
+            try:
+                novaQuantidade = int(input("Insira a nova quantidade total: "))
+                
+            except ValueError:
+                print("Insira um valor correspondente ao que está sendo pedido. Tente novamente.\n")
+                continue
+                
+            else:
+                self.__quantidadeTotal = novaQuantidade
+                print("Quantidade total atualizada!!!")
+            
+            break
 
     def exibirMaterial(self):
-        print(f"\n{self.__nomeMaterial}\nTotal = {self.__quantidadeTotal}")
+        print(f"{self.__nomeMaterial}\nTotal = {self.__quantidadeTotal}")
 
 #Classe MaterialEmprestado se relaciona com Material por agregação.
 class MaterialEmprestado:
