@@ -16,6 +16,6 @@ def defMatricula(mat):
     elif not mat.isnumeric():
         raise ExcecaoMatriculaInvalida()
 
-    elif len(mat) == 13 and mat.isnumeric:
+    elif len(mat) == 13 and mat.isnumeric():
         print("matrícula válida")
         return True
