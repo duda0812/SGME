@@ -12,6 +12,13 @@ class Material:
     def getQuantidadeTotal(self):
         return self.__quantidadeTotal
     
+    def setQuantidadeTotal(self, novaQuantidade):
+        if novaQuantidade >= 0:
+            novaQuantidade= self.__quantidadeTotal 
+        else:
+            print("A quantidade não pode ser negativa. Tente novamente.")
+
+
     def cadastrarNovoMaterial(self):
         self.__nomeMaterial = input("\nInsira o nome do material: ")
         self.__quantidadeTotal = int(input("Insira a quantidade total desse material: "))

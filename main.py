@@ -10,7 +10,9 @@
 from material import *
 from usuario import *
 from emprestimo import *
+from excecoes import *
 
+#coleções 
 listaProfessores = []
 listaAlunos = []
 listaObjetos= []
@@ -154,12 +156,37 @@ while True:
                             item.exibirMaterial()
 
                     #Solicitar materiais
+
+                    #Aqui está o try, except e o finally
+                    
                     elif opcao == 4:
-                        m1 = MaterialEmprestado()
-                        emprestimo01 = Emprestimo(usuario, m1)
-                        m1.emprestar(listaMateriais)
-                        emprestimo01.registrarEmprestimo()
-                        listaEmprestimo.append(emprestimo01)
+                        try:
+                            material_solicitado = input("\nDigite o nome do material que deseja solicitar: ")
+                            for material in listaMateriais:
+                                if material.getNomeMaterial() == material_solicitado:
+                                    if material.getQuantidadeTotal() > 0:
+                                        # Aqui reduz a quantidade disponível do material em 1
+                                        material.setQuantidadeTotal(material.getQuantidadeTotal() - 1)
+                                        
+                                        # Aqui registra o empréstimo
+                                        m1 = MaterialEmprestado()
+                                        emprestimo01 = Emprestimo(usuario, m1)
+                                        m1.emprestar([material])  # Aqui registra o material emprestado
+                                        emprestimo01.registrarEmprestimo()
+                                        listaEmprestimo.append(emprestimo01)
+
+                                        print(f"\nMaterial '{material_solicitado}' foi emprestado com sucesso!")
+                                        break
+                            else:
+                                raise MaterialIndisponivel(f"\nO material '{material_solicitado}' não foi encontrado ou não está disponível no sistema.")
+                            
+                        except MaterialIndisponivel as erro:
+                            print(erro)
+
+                        finally:
+                            print("Verificação realizada com sucesso!")
+
+
  
                     #Finalizar empréstimo
                     elif opcao == 5:

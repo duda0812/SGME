@@ -1,0 +1,2 @@
+class MaterialIndisponivel(Exception):
+    pass
