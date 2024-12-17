@@ -65,13 +65,15 @@ while True:
                         if opcao <1 or opcao> 7:
                             print("opção inválida, tente novamente")
                             raise OpcaoInvalida ("opção inválida, tente novamente")
-                   
+                    except OpcaoInvalida as erro: #continuação
+
 
                     
                     #Mudar senha
                     if opcao == 1:
                         usuario.setSenha()
                         
+        
                     
                     #Exibir usuários do sistema
                     elif opcao == 2:
